@@ -10,8 +10,8 @@ int main(int argc, char* argv[]) {
 
 	ChessGame* game = new ChessGame(player1, player2);
 	game->board->printFigures();
-
-	player1->move(0, 0, 4, 4);
+	cout << endl << "_____________________________________________________________________" << endl;
+	player1->move(5, 5, 4, 4);
 	cout << endl;
 	game->board->printFigures();
 

@@ -2,8 +2,10 @@
 #define BOARD_H
 
 #include <iostream>
-#include "Colours.h"
 #include "Figure.h"
+#include "Colours.h"
+
+class Figure;
 
 class Board {
 	friend class Player;

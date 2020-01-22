@@ -5,6 +5,11 @@
 
 using namespace std;
 
+bool Figure::canMove(Board* board, int fromX, int fromY, int toX, int toY) {
+	return false;
+}
+
 Colours Figure::getColour() {
 	return this->colour;
 }
+
