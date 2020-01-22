@@ -18,12 +18,22 @@ bool King::isSafe() {
 	return false;
 }
 
+bool King::canMove(Board* board, int fromX, int fromY, int toX, int toY)
+{
+	return false;
+}
+
 Queen::Queen(Colours colour) {
 	this->colour = colour;
 }
 
 string Queen::toString() {
 	return string("Queen");
+}
+
+bool Queen::canMove(Board* board, int fromX, int fromY, int toX, int toY)
+{
+	return false;
 }
 
 Pawn::Pawn(Colours color) {
@@ -35,6 +45,11 @@ string Pawn::toString() {
 }
 
 void Pawn::upgrade() {
+}
+
+bool Pawn::canMove(Board* board, int fromX, int fromY, int toX, int toY)
+{
+	return false;
 }
 
 Rook::Rook(Colours color) {
@@ -53,10 +68,25 @@ string Bishop::toString() {
 	return string("Bishop");
 }
 
+bool Bishop::canMove(Board* board, int fromX, int fromY, int toX, int toY)
+{
+	return false;
+}
+
 Knight::Knight(Colours color) {
 	this->colour = colour;
 }
 
 string Knight::toString() {
 	return string("Knight");
+}
+
+bool Knight::canMove(Board* board, int fromX, int fromY, int toX, int toY)
+{
+	return false;
+}
+
+
+bool Rook::canMove(Board* board, int fromX, int fromY, int toX, int toY) {
+	return true;
 }

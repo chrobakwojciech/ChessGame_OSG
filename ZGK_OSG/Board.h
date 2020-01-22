@@ -1,18 +1,19 @@
+#ifndef BOARD_H
+#define BOARD_H
+
+#include <iostream>
 #include "Colours.h"
 #include "Figure.h"
-#include <iostream>
-
-#pragma once
-using namespace std;
 
 class Board {
+	friend class Player;
 protected:
 	class BoardField {
 	public:
 		BoardField(Colours colour);
 		void setFigure(Figure* figure);
 		Colours colour;
-		Figure *figure;
+		Figure* figure;
 	};
 private:
 	BoardField *fields[8][8];
@@ -22,3 +23,4 @@ public:
 	void printColours();
 	void printFigures();
 };
+#endif

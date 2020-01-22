@@ -1,14 +1,16 @@
-#include "Colours.h"
-#include <string>
+#ifndef FIGURE_H
+#define FIGURE_H
 
-#pragma once
-using namespace std;
+#include <string>
+#include "Colours.h"
 
 class Figure {
+	friend class Player;
 public:
-	virtual string toString() = 0;
+	virtual std::string toString() = 0;
 	Colours getColour();
 protected:
 	Colours colour = Colours::BLACK;
 };
 
+#endif

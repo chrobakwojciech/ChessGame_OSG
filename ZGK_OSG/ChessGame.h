@@ -1,6 +1,7 @@
-#include "Player.h"
+#ifndef CHESSGAME_H
+#define CHESSGAME_H
+
 #include "Board.h"
-#pragma once
 
 class ChessGame {
 public:
@@ -10,4 +11,4 @@ private:
 	Player* player1;
 	Player* player2;
 };
-
+#endif

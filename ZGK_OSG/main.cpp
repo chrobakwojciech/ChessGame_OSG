@@ -1,8 +1,4 @@
 ﻿#include <iostream>
-#include "Figure.h"
-#include "Figures.h"
-#include "Colours.h"
-#include "Board.h"
 #include "Player.h"
 #include "ChessGame.h"
 
@@ -14,5 +10,10 @@ int main(int argc, char* argv[]) {
 
 	ChessGame* game = new ChessGame(player1, player2);
 	game->board->printFigures();
+
+	player1->move(0, 0, 4, 4);
+	cout << endl;
+	game->board->printFigures();
+
 	return 0;
 }

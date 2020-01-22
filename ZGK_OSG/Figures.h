@@ -1,48 +1,57 @@
-#include "Figure.h"
-#include "Colours.h"
+#ifndef FIGURES_H
+#define FIGURES_H
 
-#pragma once
-using namespace std;
+#include "Colours.h"
+#include "Figure.h"
+#include "Board.h"
 
 class King : public Figure {
 public:
 	King(Colours color);
-	string toString();
+	std::string toString();
 	bool isSafe();
+	bool canMove(Board* board, int fromX, int fromY, int toX, int toY);
 };
 
 
 class Queen : public Figure {
 public:
 	Queen(Colours color);
-	string toString();
+	std::string toString();
+	bool canMove(Board* board, int fromX, int fromY, int toX, int toY);
 };
 
 
 class Rook : public Figure {
 public:
 	Rook(Colours color);
-	string toString();
+	std::string toString();
+	bool canMove(Board* board, int fromX, int fromY, int toX, int toY);
 };
 
 
 class Bishop : public Figure {
 public:
 	Bishop(Colours color);
-	string toString();
+	std::string toString();
+	bool canMove(Board* board, int fromX, int fromY, int toX, int toY);
 };
 
 
 class Knight : public Figure {
 public:
 	Knight(Colours color);
-	string toString();
+	std::string toString();
+	bool canMove(Board* board, int fromX, int fromY, int toX, int toY);
 };
 
 
 class Pawn : public Figure {
 public:
 	Pawn(Colours color);
-	string toString();
+	std::string toString();
 	void upgrade();
+	bool canMove(Board* board, int fromX, int fromY, int toX, int toY);
 };
+
+#endif
