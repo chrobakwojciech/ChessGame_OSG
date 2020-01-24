@@ -5,12 +5,16 @@
 #include "Figure.h"
 #include "Board.h"
 
+#include <osg/ShapeDrawable>
+#include <osg/ref_ptr>
+
 class King : public Figure {
 public:
 	King(Colours color);
 	std::string toString();
 	bool isSafe();
 	bool canMove(Board* board, int fromX, int fromY, int toX, int toY);
+	osg::ref_ptr<osg::ShapeDrawable> getOBJ(Colours colour);
 };
 
 
@@ -19,6 +23,7 @@ public:
 	Queen(Colours color);
 	std::string toString();
 	bool canMove(Board* board, int fromX, int fromY, int toX, int toY);
+	osg::ref_ptr<osg::ShapeDrawable> getOBJ(Colours colour);
 };
 
 
@@ -27,6 +32,7 @@ public:
 	Rook(Colours color);
 	std::string toString();
 	bool canMove(Board* board, int fromX, int fromY, int toX, int toY);
+	osg::ref_ptr<osg::ShapeDrawable> getOBJ(Colours colour);
 };
 
 
@@ -35,6 +41,7 @@ public:
 	Bishop(Colours color);
 	std::string toString();
 	bool canMove(Board* board, int fromX, int fromY, int toX, int toY);
+	osg::ref_ptr<osg::ShapeDrawable> getOBJ(Colours colour);
 };
 
 
@@ -43,6 +50,7 @@ public:
 	Knight(Colours color);
 	std::string toString();
 	bool canMove(Board* board, int fromX, int fromY, int toX, int toY);
+	osg::ref_ptr<osg::ShapeDrawable> getOBJ(Colours colour);
 };
 
 
@@ -52,6 +60,7 @@ public:
 	std::string toString();
 	void upgrade();
 	bool canMove(Board* board, int fromX, int fromY, int toX, int toY);
+	osg::ref_ptr<osg::ShapeDrawable> getOBJ(Colours colour);
 };
 
 #endif

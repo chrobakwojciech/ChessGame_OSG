@@ -5,6 +5,7 @@
 #include <iostream>
 
 using namespace std;
+using namespace osg;
 
 /* **********************************
                 KING
@@ -28,6 +29,22 @@ bool King::canMove(Board* board, int fromX, int fromY, int toX, int toY)
 }
 
 
+ref_ptr<ShapeDrawable> King::getOBJ(Colours colour) {
+
+	Vec4* red = new Vec4(1.0, 0.0, 0.0, 1.0);
+	Vec4* black = new Vec4(0.0, 0.0, 0.0, 1.0);
+	Vec4* white = new Vec4(1.0, 1.0, 1.0, 1.0);
+
+	ref_ptr<ShapeDrawable> drw = new ShapeDrawable;
+	drw->setShape(new Capsule(Vec3(12.5 / 2.0, 12.5 / 2.0, 0.0), 5.0, 18.0));
+	if (colour == Colours::BLACK) {
+		drw->setColor(*black);
+	}
+	else {
+		drw->setColor(*white);
+	}
+	return drw;
+}
 
 /* **********************************
 				QUEEN
@@ -44,6 +61,15 @@ string Queen::toString() {
 bool Queen::canMove(Board* board, int fromX, int fromY, int toX, int toY)
 {
 	return false;
+}
+
+
+ref_ptr<ShapeDrawable> Queen::getOBJ(Colours colour) {
+	Vec4* red = new Vec4(1.0, 0.0, 0.0, 1.0);
+	ref_ptr<ShapeDrawable> drw = new ShapeDrawable;
+	drw->setShape(new Cone(Vec3(0.0, 0.0, 100.0 / 2.0 + 7.0), 7.0, 21.0));
+	drw->setColor(*red);
+	return drw;
 }
 
 
@@ -69,6 +95,15 @@ bool Pawn::canMove(Board* board, int fromX, int fromY, int toX, int toY)
 }
 
 
+ref_ptr<ShapeDrawable> Pawn::getOBJ(Colours colour) {
+	Vec4* red = new Vec4(1.0, 0.0, 0.0, 1.0);
+	ref_ptr<ShapeDrawable> drw = new ShapeDrawable;
+	drw->setShape(new Cone(Vec3(0.0, 0.0, 100.0 / 2.0 + 7.0), 7.0, 21.0));
+	drw->setColor(*red);
+	return drw;
+}
+
+
 
 /* **********************************
 				ROOK
@@ -85,6 +120,16 @@ string Rook::toString() {
 bool Rook::canMove(Board* board, int fromX, int fromY, int toX, int toY) {
 	return true;
 }
+
+
+ref_ptr<ShapeDrawable> Rook::getOBJ(Colours colour) {
+	Vec4* red = new Vec4(1.0, 0.0, 0.0, 1.0);
+	ref_ptr<ShapeDrawable> drw = new ShapeDrawable;
+	drw->setShape(new Cone(Vec3(0.0, 0.0, 100.0 / 2.0 + 7.0), 7.0, 21.0));
+	drw->setColor(*red);
+	return drw;
+}
+
 
 /* **********************************
 				BISHOP
@@ -103,6 +148,13 @@ bool Bishop::canMove(Board* board, int fromX, int fromY, int toX, int toY)
 	return false;
 }
 
+ref_ptr<ShapeDrawable> Bishop::getOBJ(Colours colour) {
+	Vec4* red = new Vec4(1.0, 0.0, 0.0, 1.0);
+	ref_ptr<ShapeDrawable> drw = new ShapeDrawable;
+	drw->setShape(new Cone(Vec3(0.0, 0.0, 100.0 / 2.0 + 7.0), 7.0, 21.0));
+	drw->setColor(*red);
+	return drw;
+}
 
 
 /* **********************************
@@ -120,4 +172,12 @@ string Knight::toString() {
 bool Knight::canMove(Board* board, int fromX, int fromY, int toX, int toY)
 {
 	return false;
+}
+
+ref_ptr<ShapeDrawable> Knight::getOBJ(Colours colour) {
+	Vec4* red = new Vec4(1.0, 0.0, 0.0, 1.0);
+	ref_ptr<ShapeDrawable> drw = new ShapeDrawable;
+	drw->setShape(new Cone(Vec3(0.0, 0.0, 100.0 / 2.0 + 7.0), 7.0, 21.0));
+	drw->setColor(*red);
+	return drw;
 }

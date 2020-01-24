@@ -1,7 +1,6 @@
 ﻿#include <iostream>
 #include "Player.h"
 #include "ChessGame.h"
-#include "ChessOSG.h"
 #include "Colours.h"
 #include <osg/Geode>
 #include <osg/ShapeDrawable>

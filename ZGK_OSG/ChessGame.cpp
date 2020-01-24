@@ -22,7 +22,8 @@ ChessGame::ChessGame(Player* player1, Player* player2) {
 }
 
 void ChessGame::createViever() {
-	this->viewer.setUpViewInWindow(100, 100, 1920 * 0.8, 1080 * 0.8);
+	//this->viewer.setUpViewInWindow(100, 100, 1920 * 0.8, 1080 * 0.8);
+	this->viewer.setUpViewOnSingleScreen(1);
 	this->viewer.setSceneData(this->root);
 	this->viewer.setCameraManipulator(new TrackballManipulator);
 }
@@ -30,10 +31,9 @@ void ChessGame::createViever() {
 void ChessGame::run() {
 	this->root = new Group;
 	this->root.get()->addChild(this->board->board_OBJ);
+	this->root.get()->addChild(this->board->figures_OBJ);
 
 	this->createViever();
-	
-
 	this->viewer.realize();
 	while (!this->viewer.done()) {
 		this->viewer.frame();
