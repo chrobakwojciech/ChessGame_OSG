@@ -11,7 +11,11 @@ using namespace osg;
                 KING
 ********************************** */
 
-King::King(Colours color) {
+Vec4* red = new Vec4(1.0, 0.0, 0.0, 1.0);
+Vec4* black = new Vec4(0.0, 0.0, 0.0, 1.0);
+Vec4* white = new Vec4(1.0, 1.0, 1.0, 1.0);
+
+King::King(Colours colour) {
 	this->colour = colour;
 }
 
@@ -30,20 +34,7 @@ bool King::canMove(Board* board, int fromX, int fromY, int toX, int toY)
 
 
 ref_ptr<ShapeDrawable> King::getOBJ(Colours colour) {
-
-	Vec4* red = new Vec4(1.0, 0.0, 0.0, 1.0);
-	Vec4* black = new Vec4(0.0, 0.0, 0.0, 1.0);
-	Vec4* white = new Vec4(1.0, 1.0, 1.0, 1.0);
-
-	ref_ptr<ShapeDrawable> drw = new ShapeDrawable;
-	drw->setShape(new Capsule(Vec3(12.5 / 2.0, 12.5 / 2.0, 0.0), 5.0, 18.0));
-	if (colour == Colours::BLACK) {
-		drw->setColor(*black);
-	}
-	else {
-		drw->setColor(*white);
-	}
-	return drw;
+	return nullptr;
 }
 
 /* **********************************
@@ -65,11 +56,7 @@ bool Queen::canMove(Board* board, int fromX, int fromY, int toX, int toY)
 
 
 ref_ptr<ShapeDrawable> Queen::getOBJ(Colours colour) {
-	Vec4* red = new Vec4(1.0, 0.0, 0.0, 1.0);
-	ref_ptr<ShapeDrawable> drw = new ShapeDrawable;
-	drw->setShape(new Cone(Vec3(0.0, 0.0, 100.0 / 2.0 + 7.0), 7.0, 21.0));
-	drw->setColor(*red);
-	return drw;
+	return nullptr;
 }
 
 
@@ -78,7 +65,7 @@ ref_ptr<ShapeDrawable> Queen::getOBJ(Colours colour) {
 				PAWN
 ********************************** */
 
-Pawn::Pawn(Colours color) {
+Pawn::Pawn(Colours colour) {
 	this->colour = colour;
 }
 
@@ -96,10 +83,14 @@ bool Pawn::canMove(Board* board, int fromX, int fromY, int toX, int toY)
 
 
 ref_ptr<ShapeDrawable> Pawn::getOBJ(Colours colour) {
-	Vec4* red = new Vec4(1.0, 0.0, 0.0, 1.0);
 	ref_ptr<ShapeDrawable> drw = new ShapeDrawable;
-	drw->setShape(new Cone(Vec3(0.0, 0.0, 100.0 / 2.0 + 7.0), 7.0, 21.0));
-	drw->setColor(*red);
+	drw->setShape(new Cone(Vec3(0.0, 0.0, 0.0), 4.0, 12.0));
+	if (this->colour == Colours::BLACK) {
+		drw->setColor(*black);
+	}
+	else {
+		drw->setColor(*white);
+	}
 	return drw;
 }
 
@@ -109,7 +100,7 @@ ref_ptr<ShapeDrawable> Pawn::getOBJ(Colours colour) {
 				ROOK
 ********************************** */
 
-Rook::Rook(Colours color) {
+Rook::Rook(Colours colour) {
 	this->colour = colour;
 }
 
@@ -123,10 +114,14 @@ bool Rook::canMove(Board* board, int fromX, int fromY, int toX, int toY) {
 
 
 ref_ptr<ShapeDrawable> Rook::getOBJ(Colours colour) {
-	Vec4* red = new Vec4(1.0, 0.0, 0.0, 1.0);
 	ref_ptr<ShapeDrawable> drw = new ShapeDrawable;
-	drw->setShape(new Cone(Vec3(0.0, 0.0, 100.0 / 2.0 + 7.0), 7.0, 21.0));
-	drw->setColor(*red);
+	drw->setShape(new Cylinder(Vec3(0.0, 0.0, 0.0), 3.0, 18.0));
+	if (this->colour == Colours::BLACK) {
+		drw->setColor(*black);
+	}
+	else {
+		drw->setColor(*white);
+	}
 	return drw;
 }
 
@@ -135,7 +130,7 @@ ref_ptr<ShapeDrawable> Rook::getOBJ(Colours colour) {
 				BISHOP
 ********************************** */
 
-Bishop::Bishop(Colours color) {
+Bishop::Bishop(Colours colour) {
 	this->colour = colour;
 }
 
@@ -149,10 +144,14 @@ bool Bishop::canMove(Board* board, int fromX, int fromY, int toX, int toY)
 }
 
 ref_ptr<ShapeDrawable> Bishop::getOBJ(Colours colour) {
-	Vec4* red = new Vec4(1.0, 0.0, 0.0, 1.0);
 	ref_ptr<ShapeDrawable> drw = new ShapeDrawable;
-	drw->setShape(new Cone(Vec3(0.0, 0.0, 100.0 / 2.0 + 7.0), 7.0, 21.0));
-	drw->setColor(*red);
+	drw->setShape(new Cone(Vec3(0.0, 0.0, 0.0), 4.0, 16.0));
+	if (this->colour == Colours::BLACK) {
+		drw->setColor(*black);
+	}
+	else {
+		drw->setColor(*white);
+	}
 	return drw;
 }
 
@@ -161,7 +160,7 @@ ref_ptr<ShapeDrawable> Bishop::getOBJ(Colours colour) {
 				KNIGHT
 ********************************** */
 
-Knight::Knight(Colours color) {
+Knight::Knight(Colours colour) {
 	this->colour = colour;
 }
 
@@ -175,9 +174,5 @@ bool Knight::canMove(Board* board, int fromX, int fromY, int toX, int toY)
 }
 
 ref_ptr<ShapeDrawable> Knight::getOBJ(Colours colour) {
-	Vec4* red = new Vec4(1.0, 0.0, 0.0, 1.0);
-	ref_ptr<ShapeDrawable> drw = new ShapeDrawable;
-	drw->setShape(new Cone(Vec3(0.0, 0.0, 100.0 / 2.0 + 7.0), 7.0, 21.0));
-	drw->setColor(*red);
-	return drw;
+	return nullptr;
 }

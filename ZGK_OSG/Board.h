@@ -20,12 +20,12 @@ protected:
 	public:
 		osg::ref_ptr<osg::ShapeDrawable> field_OBJ;
 		osg::ref_ptr<osg::ShapeDrawable> figure_OBJ;
-		BoardField(Colours colour, int i, int j, Board* board);
+		BoardField(Colours colour);
 		void setFigure(Figure* figure);
 		Colours colour;
 		Figure* figure;
 	private:
-		void createOBJ(int i, int j);
+		void createOBJ();
 		void setFigureOBJ(Colours colour);
 		Board* board;
 	};

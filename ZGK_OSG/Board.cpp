@@ -6,19 +6,18 @@
 
 #include <osg/Group>
 #include <osg/ShapeDrawable>
+#include <osg/MatrixTransform>
 #include <osg/Geode>
 #include <osg/ref_ptr>
 
 using namespace std;
 using namespace osg;
 
-Board::BoardField::BoardField(Colours colour, int i, int j, Board* board) {
-	this->board = board;
+Board::BoardField::BoardField(Colours colour) {
 	this->colour = colour;
 	this->figure = nullptr;
 	this->figure_OBJ = nullptr;
-
-	this->createOBJ(i, j);
+	this->createOBJ();
 }
 
 void Board::BoardField::setFigureOBJ(Colours colour) {
@@ -27,12 +26,12 @@ void Board::BoardField::setFigureOBJ(Colours colour) {
 	}
 }
 
-void Board::BoardField::createOBJ(int i, int j) {
+void Board::BoardField::createOBJ() {
 	Vec4* black = new Vec4(0.0, 0.0, 0.0, 1.0);
 	Vec4* white = new Vec4(1.0, 1.0, 1.0, 1.0);
 
 	this->field_OBJ = new ShapeDrawable;
-	Vec3* center = new Vec3(-this->board->width_OBJ / 2.0 + j * 12.5 + 12.5 / 2.0, -this->board->height_OBJ / 2.0 + i * 12.5 + 12.5 / 2.0, this->board->size_OBJ / 2.0);
+	Vec3* center = new Vec3(0.0, 0.0, 0.0);
 	this->field_OBJ.get()->setShape(new Box(*center, 12.5, 12.5, 0.05));
 	if (this->colour == Colours::BLACK) {
 		this->field_OBJ.get()->setColor(*black);
@@ -59,18 +58,18 @@ void Board::fillBoard() {
 		for (int j = 0; j < 8; j++) {
 			if (i % 2 == 0) {
 				if (j % 2 == 0) {
-					this->fields[i][j] = new BoardField(Colours::WHITE, i, j, this);
+					this->fields[i][j] = new BoardField(Colours::WHITE);
 				}
 				else {
-					this->fields[i][j] = new BoardField(Colours::BLACK, i, j, this);
+					this->fields[i][j] = new BoardField(Colours::BLACK);
 				}
 			}
 			else {
 				if (j % 2 == 0) {
-					this->fields[i][j] = new BoardField(Colours::BLACK, i, j, this);
+					this->fields[i][j] = new BoardField(Colours::BLACK);
 				}
 				else {
-					this->fields[i][j] = new BoardField(Colours::WHITE, i, j, this);
+					this->fields[i][j] = new BoardField(Colours::WHITE);
 				}
 			}
 		}
@@ -128,8 +127,16 @@ void Board::createOBJ() {
 
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++) {
+			ref_ptr<Geode> g = new Geode;
 			drw = this->fields[i][j]->field_OBJ;
-			geom_node.get()->addDrawable(drw);
+			g.get()->addDrawable(drw);
+			
+			ref_ptr<MatrixTransform> t = new MatrixTransform;
+
+			t.get()->setMatrix(Matrix::translate(-this->width_OBJ / 2.0 + j * 12.5 + 12.5 / 2.0, -this->height_OBJ / 2.0 + i * 12.5 + 12.5 / 2.0, this->size_OBJ / 2.0));
+			t.get()->addChild(g);
+
+			geom_node.get()->addChild(t);
 		}
 	}
 
@@ -143,7 +150,7 @@ Board::Board() {
 	this->frame_OBJ = 20.0;
 	this->fillBoard();
 	this->createOBJ();	
-	//this->renderFiguresOBJ();
+	this->renderFiguresOBJ();
 }
 
 
@@ -157,8 +164,17 @@ void Board::renderFiguresOBJ() {
 
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++) {
+			ref_ptr<Geode> g = new Geode;
 			drw = this->fields[i][j]->figure_OBJ;
-			geom_node.get()->addDrawable(drw);
+			g.get()->addDrawable(drw);
+
+			ref_ptr<MatrixTransform> t = new MatrixTransform;
+
+			t.get()->setMatrix(Matrix::translate(-this->width_OBJ / 2.0 + j * 12.5 + 12.5 / 2.0, -this->height_OBJ / 2.0 + i * 12.5 + 12.5 / 2.0, this->size_OBJ / 2.0));
+			t.get()->addChild(g);
+
+			geom_node.get()->addChild(t);
+
 		}
 	}
 	this->figures_OBJ.get()->addChild(geom_node);
