@@ -99,6 +99,7 @@ void Board::fillBoard() {
 	this->fields[7][6]->setFigure(new Knight(Colours::WHITE));
 	this->fields[7][7]->setFigure(new Rook(Colours::WHITE));
 
+
 	for (int i = 0; i < 8; i++) {
 		this->fields[6][i]->setFigure(new Pawn(Colours::WHITE));
 	}
@@ -160,13 +161,13 @@ void Board::renderFiguresOBJ() {
 
 	this->figures_OBJ = new Group;
 	ref_ptr<Geode> geom_node = new Geode;
-	ref_ptr<ShapeDrawable> drw = new ShapeDrawable;
+	ref_ptr<Group> gr = new Group;
 
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++) {
 			ref_ptr<Geode> g = new Geode;
-			drw = this->fields[i][j]->figure_OBJ;
-			g.get()->addDrawable(drw);
+			gr = this->fields[i][j]->figure_OBJ;
+			g.get()->addChild(gr);
 
 			ref_ptr<MatrixTransform> t = new MatrixTransform;
 

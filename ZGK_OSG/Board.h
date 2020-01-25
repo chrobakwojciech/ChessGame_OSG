@@ -19,7 +19,7 @@ protected:
 
 	public:
 		osg::ref_ptr<osg::ShapeDrawable> field_OBJ;
-		osg::ref_ptr<osg::ShapeDrawable> figure_OBJ;
+		osg::ref_ptr<osg::Group> figure_OBJ;
 		BoardField(Colours colour);
 		void setFigure(Figure* figure);
 		Colours colour;

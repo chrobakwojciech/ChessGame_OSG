@@ -5,8 +5,8 @@
 
 using namespace std;
 
-osg::ref_ptr<osg::ShapeDrawable> Figure::getOBJ(Colours colour)
-{
+
+osg::ref_ptr<osg::Group> Figure::getOBJ(Colours colour) {
 	return nullptr;
 }
 
