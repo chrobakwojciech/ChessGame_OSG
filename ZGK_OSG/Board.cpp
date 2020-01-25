@@ -103,6 +103,8 @@ void Board::fillBoard() {
 	for (int i = 0; i < 8; i++) {
 		this->fields[6][i]->setFigure(new Pawn(Colours::WHITE));
 	}
+
+
 }
 
 void Board::createOBJ() {
@@ -156,6 +158,7 @@ Board::Board() {
 
 
 void Board::renderFiguresOBJ() {
+	
 	Vec4* black = new Vec4(0.0, 0.0, 0.0, 1.0);
 	Vec4* white = new Vec4(1.0, 1.0, 1.0, 1.0);
 
@@ -166,6 +169,7 @@ void Board::renderFiguresOBJ() {
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++) {
 			ref_ptr<Geode> g = new Geode;
+			
 			gr = this->fields[i][j]->figure_OBJ;
 			g.get()->addChild(gr);
 
@@ -178,7 +182,9 @@ void Board::renderFiguresOBJ() {
 
 		}
 	}
+	
 	this->figures_OBJ.get()->addChild(geom_node);
+	cout << endl;
 }
 
 
@@ -220,5 +226,19 @@ void Board::printFigures() {
 		}
 		cout << endl;
 	}
+	cout << endl;
+	for (int i = 0; i < 8; i++) {
+		for (int j = 0; j < 8; j++) {
+			if (this->fields[i][j]->figure_OBJ == nullptr) {
+				cout << setw(11) << " ";
+			}
+			else {
+				cout << setw(11) << "3D";
+			}
+		}
+		cout << endl;
+	}
+		cout << endl;
+		cout << endl;
 }
 

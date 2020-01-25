@@ -33,7 +33,7 @@ bool King::isSafe() {
 
 bool King::canMove(Board* board, int fromX, int fromY, int toX, int toY)
 {
-	return false;
+	return true;
 }
 
 ref_ptr<Group> King::getOBJ(Colours colour) {
@@ -148,7 +148,7 @@ string Queen::toString() {
 
 bool Queen::canMove(Board* board, int fromX, int fromY, int toX, int toY)
 {
-	return false;
+	return true;
 }
 
 ref_ptr<Group> Queen::getOBJ(Colours colour) {
@@ -246,7 +246,7 @@ void Pawn::upgrade() {
 
 bool Pawn::canMove(Board* board, int fromX, int fromY, int toX, int toY)
 {
-	return false;
+	return true;
 }
 
 ref_ptr<Group> Pawn::getOBJ(Colours colour) {
@@ -391,7 +391,7 @@ string Bishop::toString() {
 
 bool Bishop::canMove(Board* board, int fromX, int fromY, int toX, int toY)
 {
-	return false;
+	return true;
 }
 
 ref_ptr<Group> Bishop::getOBJ(Colours colour) {
@@ -468,7 +468,7 @@ string Knight::toString() {
 
 bool Knight::canMove(Board* board, int fromX, int fromY, int toX, int toY)
 {
-	return false;
+	return true;
 }
 
 ref_ptr<Group> Knight::getOBJ(Colours colour) {
